@@ -79,6 +79,22 @@ namespace GalacticGraph.Metier.Cartes
                 }
             }
         }
+
+        /// <summary>
+        /// Renvoie la direction à suivre pour aller aux coordonnées d'arrivée
+        /// </summary>
+        /// <param name="coordonneesArrivee">Les coordonnées de la case destination (supposée voisine)</param>
+        /// <returns>La direction à suivre</returns>
+        public Direction GetDirectionPourAllerEn(Coordonnees coordonneesArrivee)
+        {
+            // On teste chaque direction jusqu'à trouver celle qui mène aux coordonnées d'arrivée
+            foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+            {
+                if (this.GetVoisin(direction).Equals(coordonneesArrivee))
+                    return direction;
+            }
+            throw new Exception("Les coordonnées données ne sont pas voisines !");
+        }
         #endregion
     }
 }

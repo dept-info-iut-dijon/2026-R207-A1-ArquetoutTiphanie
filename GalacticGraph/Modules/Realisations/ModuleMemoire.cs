@@ -24,6 +24,8 @@ namespace GalacticGraph.Modules.Realisations
         /// </summary>
         public bool HasCarte => this.carte != null;
 
+        public Carte Carte => this.carte;
+
         public Vaisseau Vaisseau => this.vaisseau;
 
         public bool HasVaisseau => this.vaisseau != null;
@@ -43,6 +45,14 @@ namespace GalacticGraph.Modules.Realisations
         public void GenererCarte(string messageRecu)
         {
             this.carte = new Carte(messageRecu);
+        }
+
+        /// <summary>
+        /// Crée le vaisseau aux coordonnées de la base sur la carte
+        /// </summary>
+        public void GenererVaisseau()
+        {
+            this.vaisseau = new Vaisseau(this.carte.CoordonneesBase);
         }
         #endregion
     }

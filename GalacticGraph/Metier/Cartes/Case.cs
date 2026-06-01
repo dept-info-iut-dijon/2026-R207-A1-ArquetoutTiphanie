@@ -26,5 +26,12 @@ namespace GalacticGraph.Metier.Cartes
             this.terrain = terrain;
         }
         #endregion
+
+        #region --- Méthodes ---
+        public override string ToString()
+        {
+            return this.terrain.ToString();
+        }
+        #endregion
     }
 }

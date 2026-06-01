@@ -9,5 +9,6 @@ namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
     public class TerrainVide : Terrain
     {
         public override TypeTerrain Type => TypeTerrain.VIDE;
+        public override string ToString() => " ";
     }
 }

@@ -33,7 +33,9 @@ namespace GalacticGraph.Modules.Realisations
         {
             switch (messageEnvoye)
             {
-                case "CARTE": ReactionCarte(messageRecu); break;
+                case "CARTE": 
+                    ReactionCarte(messageRecu); 
+                    break;
             }
         }
         private void ReactionCarte(string messageRecu)

@@ -9,5 +9,6 @@ namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
     public class TerrainPlanete : Terrain
     {
         public override TypeTerrain Type => TypeTerrain.PLANETE;
+        public override string ToString() => "P";
     }
 }

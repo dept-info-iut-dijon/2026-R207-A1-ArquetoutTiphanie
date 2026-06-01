@@ -32,6 +32,8 @@ namespace GalacticGraph.Metier.Cartes
             for (int ligne = 0; ligne < this.hauteur; ligne++)
                 for (int colonne = 0; colonne < this.largeur; colonne++)
                     this.AjouterCase(messageRecu[colonne + this.largeur * ligne], new Coordonnees(ligne, colonne));
+
+            this.AffichageConsole();
         }
         #endregion
 
@@ -43,6 +45,25 @@ namespace GalacticGraph.Metier.Cartes
         {
             this.cases[coordonnees] = FabriqueCase.Creer(caractere);
         }
+
+        private void AffichageConsole()
+        {
+            Console.WriteLine();
+            Console.WriteLine("---- AFFICHAGE DE LA CARTE ----");
+            Console.WriteLine();
+            for (int ligne = 0; ligne < this.hauteur; ligne++)
+            {
+                for (int colonne = 0; colonne < this.largeur; colonne++)
+                {
+                    Case c = this.cases[new Coordonnees(ligne, colonne)];
+                    Console.Write(c.ToString());
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("-------------------------------");
+        }
+
         #endregion
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
 {
-    internal class TerrainSoleil
+    public class TerrainSoleil : Terrain
     {
+        public override TypeTerrain Type => TypeTerrain.SOLEIL;
     }
 }

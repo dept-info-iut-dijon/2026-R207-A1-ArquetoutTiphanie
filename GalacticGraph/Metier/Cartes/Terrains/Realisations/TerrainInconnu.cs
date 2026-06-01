@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
 {
-    internal class TerrainInconnu
+    public class TerrainInconnu : Terrain
     {
+        public override TypeTerrain Type => TypeTerrain.INCONNU;
     }
 }

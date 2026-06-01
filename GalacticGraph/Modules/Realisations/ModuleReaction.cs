@@ -31,14 +31,13 @@ namespace GalacticGraph.Modules.Realisations
         /// <param name="messageRecu">La réponse du serveur</param>
         public void ReagirAuMessageRecu(string messageEnvoye, string messageRecu)
         {
-            switch (messageEnvoye)
+            if (messageEnvoye == "CARTE")
             {
-                case "CARTE":
-                    ReactionCarte(messageRecu);
-                    break;
-                case "CREER":
-                    ReactionCreationVaisseau();
-                    break;
+                ReactionCarte(messageRecu);
+            }
+            else if (messageEnvoye == "CREER")
+            {
+                ReactionCreationVaisseau();
             }
         }
 

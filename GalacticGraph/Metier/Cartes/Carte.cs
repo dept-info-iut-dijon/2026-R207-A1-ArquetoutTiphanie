@@ -16,6 +16,14 @@ namespace GalacticGraph.Metier.Cartes
         private int hauteur;
         private int largeur;
         private Dictionary<Coordonnees, Case> cases;
+        private Coordonnees coordonneesBase;
+        #endregion
+
+        #region --- Propriétés ---
+        /// <summary>
+        /// Coordonnées de la base sur la carte
+        /// </summary>
+        public Coordonnees CoordonneesBase => this.coordonneesBase;
         #endregion
 
         #region --- Constructeur ---
@@ -55,11 +63,18 @@ namespace GalacticGraph.Metier.Cartes
 
         #region --- Méthodes ---
         /// <summary>
-        /// Crée une case et l'ajoute au dictionnaire
+        /// Crée une case à partir d'un caractère et l'ajoute au dictionnaire.
+        /// Mémorise les coordonnées si la case est une base.
         /// </summary>
+        /// <param name="caractere">Le caractère représentant le type de case</param>
+        /// <param name="coordonnees">Les coordonnées de la case</param>
         private void AjouterCase(char caractere, Coordonnees coordonnees)
         {
             this.cases[coordonnees] = FabriqueCase.Creer(caractere);
+
+            // On mémorise les coordonnées de la base
+            if (caractere == 'B')
+                this.coordonneesBase = coordonnees;
         }
 
         private void AffichageConsole()

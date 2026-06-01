@@ -42,6 +42,43 @@ namespace GalacticGraph.Metier.Cartes
         {
             return HashCode.Combine(Ligne, Colonne);
         }
+
+        /// <summary>
+        /// Renvoie les coordonnées de la case voisine dans la direction donnée
+        /// </summary>
+        /// <param name="direction">La direction souhaitée</param>
+        /// <returns>Les coordonnées de la case voisine</returns>
+        public Coordonnees GetVoisin(Direction direction)
+        {
+            // Ligne paire
+            if (this.Ligne % 2 == 0)
+            {
+                switch (direction)
+                {
+                    case Direction.GAUCHE: return new Coordonnees(Ligne, Colonne - 1);
+                    case Direction.DROITE: return new Coordonnees(Ligne, Colonne + 1);
+                    case Direction.HAUTGAUCHE: return new Coordonnees(Ligne - 1, Colonne - 1);
+                    case Direction.HAUTDROITE: return new Coordonnees(Ligne - 1, Colonne);
+                    case Direction.BASGAUCHE: return new Coordonnees(Ligne + 1, Colonne - 1);
+                    case Direction.BASDROITE: return new Coordonnees(Ligne + 1, Colonne);
+                    default: return null;
+                }
+            }
+            // Ligne impaire
+            else
+            {
+                switch (direction)
+                {
+                    case Direction.GAUCHE: return new Coordonnees(Ligne, Colonne - 1);
+                    case Direction.DROITE: return new Coordonnees(Ligne, Colonne + 1);
+                    case Direction.HAUTGAUCHE: return new Coordonnees(Ligne - 1, Colonne);
+                    case Direction.HAUTDROITE: return new Coordonnees(Ligne - 1, Colonne + 1);
+                    case Direction.BASGAUCHE: return new Coordonnees(Ligne + 1, Colonne);
+                    case Direction.BASDROITE: return new Coordonnees(Ligne + 1, Colonne + 1);
+                    default: return null;
+                }
+            }
+        }
         #endregion
     }
 }

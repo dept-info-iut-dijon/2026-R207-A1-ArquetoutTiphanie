@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalacticGraph.Metier.Cartes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

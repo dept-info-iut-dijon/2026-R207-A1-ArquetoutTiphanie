@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalacticGraph.Metier.Cartes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,14 @@ namespace GalacticGraph.Modules.Realisations
     public class ModuleMemoire : Module
     {
         #region --- Attributs ---
+        private Carte carte;
         #endregion
 
         #region --- Propriétés ---
+        /// <summary>
+        /// Indique si la carte a été générée ou non
+        /// </summary>
+        public bool HasCarte => this.carte != null;
         #endregion
 
         #region --- Constructeur ---
@@ -24,6 +30,14 @@ namespace GalacticGraph.Modules.Realisations
         #endregion
 
         #region --- Méthodes ---
+        /// <summary>
+        /// Génère la carte à partir du message reçu du serveur
+        /// </summary>
+        /// <param name="messageRecu">Le message reçu du serveur</param>
+        public void GenererCarte(string messageRecu)
+        {
+            this.carte = new Carte(messageRecu);
+        }
         #endregion
     }
 }

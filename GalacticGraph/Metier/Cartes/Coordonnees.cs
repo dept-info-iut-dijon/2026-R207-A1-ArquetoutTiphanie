@@ -29,5 +29,19 @@ namespace GalacticGraph.Metier.Cartes
             this.Colonne = colonne;
         }
         #endregion
+
+        #region --- Méthodes ---
+        public override bool Equals(object obj)
+        {
+            return obj is Coordonnees coordonnees &&
+                   Ligne == coordonnees.Ligne &&
+                   Colonne == coordonnees.Colonne;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Ligne, Colonne);
+        }
+        #endregion
     }
 }

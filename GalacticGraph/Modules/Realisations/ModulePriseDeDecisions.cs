@@ -12,6 +12,8 @@ namespace GalacticGraph.Modules.Realisations
     public class ModulePriseDeDecisions : Module
     {
         #region --- Attributs ---
+        private static Random hasard = new Random();
+        private static string[] directions = { "HAUTDROITE", "HAUTGAUCHE", "GAUCHE", "BASGAUCHE", "BASDROITE", "DROITE" };
         #endregion
 
         #region --- Propriétés ---
@@ -31,8 +33,20 @@ namespace GalacticGraph.Modules.Realisations
         /// <returns>Le message à envoyer au serveur</returns>
         public string DeterminerNouvelleAction(string messageRecuDuServeur)
         {
-            this.ArreterLaCommunication();
-            return "FIN";
+            if (messageRecuDuServeur.StartsWith("OK"))
+            {
+                string choix = directions[hasard.Next(directions.Length)];
+                return $"BOUGER|0|{choix}";
+            }
+            else if (messageRecuDuServeur == "NOK|Déplacement impossible - La case destination n'existe pas")
+            {
+                this.ArreterLaCommunication();
+                return "FIN";
+            }
+            else
+            {
+                return "CREER";
+            }
         }
         #endregion
     }

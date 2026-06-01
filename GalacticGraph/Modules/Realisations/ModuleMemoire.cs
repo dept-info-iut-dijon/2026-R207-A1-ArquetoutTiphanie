@@ -1,4 +1,5 @@
-﻿using GalacticGraph.Metier.Cartes;
+﻿using GalacticGraph.Metier;
+using GalacticGraph.Metier.Cartes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace GalacticGraph.Modules.Realisations
     {
         #region --- Attributs ---
         private Carte carte;
+        private Vaisseau vaisseau;
         #endregion
 
         #region --- Propriétés ---
@@ -21,6 +23,10 @@ namespace GalacticGraph.Modules.Realisations
         /// Indique si la carte a été générée ou non
         /// </summary>
         public bool HasCarte => this.carte != null;
+
+        public Vaisseau Vaisseau => this.vaisseau;
+
+        public bool HasVaisseau => this.vaisseau != null;
         #endregion
 
         #region --- Constructeur ---

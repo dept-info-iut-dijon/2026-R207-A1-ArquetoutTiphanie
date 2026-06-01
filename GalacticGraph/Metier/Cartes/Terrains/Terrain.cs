@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GalacticGraph.Metier.Cartes.Terrains
 {
-    internal class Terrains
+    public abstract class Terrain
     {
+        public Terrain()
+        {
+
+        }
     }
 }

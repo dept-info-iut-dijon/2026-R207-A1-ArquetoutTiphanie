@@ -33,6 +33,22 @@ namespace GalacticGraph.Metier.Cartes
                 for (int colonne = 0; colonne < this.largeur; colonne++)
                     this.AjouterCase(messageRecu[colonne + this.largeur * ligne], new Coordonnees(ligne, colonne));
 
+            for (int ligne = 0; ligne < this.hauteur; ligne++)
+            {
+                for (int colonne = 0; colonne < this.largeur; colonne++)
+                {
+                    Coordonnees cooCase = new Coordonnees(ligne, colonne);
+                    foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+                    {
+                        Coordonnees cooVoisin = cooCase.GetVoisin(direction);
+                        if (this.cases.ContainsKey(cooVoisin))
+                        {
+                            this.cases[cooCase].AjouterVoisin(this.cases[cooVoisin]);
+                        }
+                    }
+                }
+            }
+
             this.AffichageConsole();
         }
         #endregion
@@ -64,6 +80,17 @@ namespace GalacticGraph.Metier.Cartes
             Console.WriteLine("-------------------------------");
         }
 
+        /// <summary>
+        /// Renvoie la case aux coordonnées données, ou null si elle n'existe pas
+        /// </summary>
+        /// <param name="coordonnees">Les coordonnées de la case recherchée</param>
+        /// <returns>La case correspondante ou null</returns>
+        public Case? GetCaseAt(Coordonnees coordonnees)
+        {
+            if (this.cases.ContainsKey(coordonnees))
+                return this.cases[coordonnees];
+            return null;
+        }
         #endregion
     }
 }

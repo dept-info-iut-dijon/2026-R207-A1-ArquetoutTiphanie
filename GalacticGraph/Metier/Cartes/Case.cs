@@ -14,6 +14,14 @@ namespace GalacticGraph.Metier.Cartes
     {
         #region --- Attributs ---
         private Terrain terrain;
+        private List<Case> voisins;
+        #endregion
+
+        #region --- Propriétés ---
+        /// <summary>
+        /// Tableau des cases voisines de cette case
+        /// </summary>
+        public Case[] Voisins => this.voisins.ToArray();
         #endregion
 
         #region --- Constructeur ---
@@ -24,10 +32,23 @@ namespace GalacticGraph.Metier.Cartes
         public Case(Terrain terrain)
         {
             this.terrain = terrain;
+            this.voisins = new List<Case>();
         }
         #endregion
 
         #region --- Méthodes ---
+        /// <summary>
+        /// Ajoute une case voisine à la liste des voisins
+        /// </summary>
+        /// <param name="voisin">La case voisine à ajouter</param>
+        public void AjouterVoisin(Case voisin)
+        {
+            this.voisins.Add(voisin);
+        }
+
+        /// <summary>
+        /// Renvoie la représentation textuelle du terrain de la case
+        /// </summary>
         public override string ToString()
         {
             return this.terrain.ToString();

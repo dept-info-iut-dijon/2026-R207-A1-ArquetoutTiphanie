@@ -34,25 +34,23 @@ namespace GalacticGraph.Modules.Realisations
         /// <returns>Le message à envoyer au serveur</returns>
         public string DeterminerNouvelleAction(string messageRecuDuServeur)
         {
-            if (messageRecuDuServeur.StartsWith("OK"))
+            string messageAEnvoyer = "";
+            if (!this.ModuleMemoire.HasCarte)
             {
-                string choix = directions[hasard.Next(directions.Length)];
-                return $"BOUGER|0|{choix}";
+                messageAEnvoyer = "CARTE";
             }
-            else if (messageRecuDuServeur.StartsWith("NOK"))
+            else if (!this.ModuleMemoire.HasVaisseau)
             {
-                this.ArreterLaCommunication();
-                return "FIN";
-            }
-            else if (!this.ModuleMemoire.HasCarte)
-            {
-                return "CARTE";
+                messageAEnvoyer = "CREER";
             }
             else
             {
-                return "CREER";
+                messageAEnvoyer = "FIN";
+                this.ArreterLaCommunication();
             }
+            return messageAEnvoyer;
         }
+
         #endregion
     }
 }

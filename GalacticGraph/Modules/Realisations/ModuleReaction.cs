@@ -25,24 +25,39 @@ namespace GalacticGraph.Modules.Realisations
 
         #region --- Méthodes ---
         /// <summary>
-        /// Méthode réagissant à la dernière réponse du serveur
+        /// Réagit au dernier message reçu du serveur
         /// </summary>
-        /// <param name="messageEnvoye">Dernier message envoyé au serveur par l'IA</param>
-        /// <param name="messageRecu">Réponse du serveur à ce message</param>
+        /// <param name="messageEnvoye">Le dernier message envoyé par l'IA</param>
+        /// <param name="messageRecu">La réponse du serveur</param>
         public void ReagirAuMessageRecu(string messageEnvoye, string messageRecu)
         {
             switch (messageEnvoye)
             {
-                case "CARTE": 
-                    ReactionCarte(messageRecu); 
+                case "CARTE":
+                    ReactionCarte(messageRecu);
+                    break;
+                case "CREER":
+                    ReactionCreationVaisseau();
                     break;
             }
         }
+
+        /// <summary>
+        /// Génère la carte à partir de la réponse du serveur
+        /// </summary>
+        /// <param name="messageRecu">Le message contenant la carte</param>
         private void ReactionCarte(string messageRecu)
         {
             this.ModuleMemoire.GenererCarte(messageRecu);
         }
 
+        /// <summary>
+        /// Génère le vaisseau à la position de la base
+        /// </summary>
+        private void ReactionCreationVaisseau()
+        {
+            this.ModuleMemoire.GenererVaisseau();
+        }
         #endregion
     }
 }

@@ -38,10 +38,14 @@ namespace GalacticGraph.Modules.Realisations
                 string choix = directions[hasard.Next(directions.Length)];
                 return $"BOUGER|0|{choix}";
             }
-            else if (messageRecuDuServeur == "NOK|Déplacement impossible - La case destination n'existe pas")
+            else if (messageRecuDuServeur.StartsWith("NOK"))
             {
                 this.ArreterLaCommunication();
                 return "FIN";
+            }
+            else if (!this.ModuleMemoire.HasCarte)
+            {
+                return "CARTE";
             }
             else
             {

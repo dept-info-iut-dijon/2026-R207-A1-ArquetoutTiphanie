@@ -28,6 +28,20 @@ namespace GalacticGraph.Metier.Cartes
             this.hauteur = 40;
             this.largeur = 80;
             this.cases = new Dictionary<Coordonnees, Case>();
+
+            for (int ligne = 0; ligne < this.hauteur; ligne++)
+                for (int colonne = 0; colonne < this.largeur; colonne++)
+                    this.AjouterCase(messageRecu[colonne + this.largeur * ligne], new Coordonnees(ligne, colonne));
+        }
+        #endregion
+
+        #region --- Méthodes ---
+        /// <summary>
+        /// Crée une case et l'ajoute au dictionnaire
+        /// </summary>
+        private void AjouterCase(char caractere, Coordonnees coordonnees)
+        {
+            this.cases[coordonnees] = FabriqueCase.Creer(caractere);
         }
         #endregion
     }

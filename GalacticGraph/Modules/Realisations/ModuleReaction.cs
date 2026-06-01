@@ -31,8 +31,16 @@ namespace GalacticGraph.Modules.Realisations
         /// <param name="messageRecu">Réponse du serveur à ce message</param>
         public void ReagirAuMessageRecu(string messageEnvoye, string messageRecu)
         {
-           
+            switch (messageEnvoye)
+            {
+                case "CARTE": ReactionCarte(messageRecu); break;
+            }
         }
+        private void ReactionCarte(string messageRecu)
+        {
+            this.ModuleMemoire.GenererCarte(messageRecu);
+        }
+
         #endregion
     }
 }

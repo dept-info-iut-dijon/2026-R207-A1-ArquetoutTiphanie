@@ -22,6 +22,11 @@ namespace GalacticGraph.Metier.Cartes
         /// Tableau des cases voisines de cette case
         /// </summary>
         public Case[] Voisins => this.voisins.ToArray();
+
+        /// <summary>
+        /// Indique si la case est accessible par un vaisseau
+        /// </summary>
+        public bool EstAccessible => this.terrain.EstAccessible;
         #endregion
 
         #region --- Constructeur ---

@@ -66,6 +66,9 @@ namespace GalacticGraph.Metier.Algorithmes
         /// </summary>
         /// <param name="depart">La case de départ</param>
         public abstract void CalculerDistancesDepuis(Case depart);
+
+        public abstract List<Direction> GetChemin(Case arrivee);
+
         #endregion
     }
 }

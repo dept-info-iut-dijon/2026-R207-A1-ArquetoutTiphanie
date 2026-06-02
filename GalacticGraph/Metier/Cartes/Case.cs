@@ -68,6 +68,11 @@ namespace GalacticGraph.Metier.Cartes
         {
             return this.terrain.ToString();
         }
+
+        public Direction GetDirectionPourAllerEn(Case caseArrivee)
+        {
+            return this.coordonnees.GetDirectionPourAllerEn(caseArrivee.Coordonnees);
+        }
         #endregion
     }
 }

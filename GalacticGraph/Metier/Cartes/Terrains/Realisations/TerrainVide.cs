@@ -9,6 +9,7 @@ namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
     public class TerrainVide : Terrain
     {
         public override TypeTerrain Type => TypeTerrain.VIDE;
+        public override bool EstAccessible => true;
         public override string ToString() => " ";
     }
 }

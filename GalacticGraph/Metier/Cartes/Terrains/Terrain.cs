@@ -11,7 +11,14 @@ namespace GalacticGraph.Metier.Cartes.Terrains
     /// </summary>
     public abstract class Terrain
     {
-        /// <summary>Type du terrain</summary>
+        /// <summary>
+        /// Indique si le terrain est accessible par un vaisseau
+        /// </summary>
         public abstract TypeTerrain Type { get; }
+
+        /// <summary>
+        /// Indique si le vaisseau peut se déplacer sur ce terrain
+        /// </summary>
+        public abstract bool EstAccessible { get; }
     }
 }

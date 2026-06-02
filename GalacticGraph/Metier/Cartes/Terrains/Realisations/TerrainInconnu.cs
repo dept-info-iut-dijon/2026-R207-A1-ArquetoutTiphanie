@@ -9,6 +9,7 @@ namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
     public class TerrainInconnu : Terrain
     {
         public override TypeTerrain Type => TypeTerrain.INCONNU;
+        public override bool EstAccessible => true;
         public override string ToString() => "X";
     }
 }

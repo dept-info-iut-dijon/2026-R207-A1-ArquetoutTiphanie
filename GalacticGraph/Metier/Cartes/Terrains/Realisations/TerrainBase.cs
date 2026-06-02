@@ -6,19 +6,10 @@ using System.Threading.Tasks;
 
 namespace GalacticGraph.Metier.Cartes.Terrains.Realisations
 {
-    /// <summary>
-    /// Classe abstraite représentant un terrain
-    /// </summary>
-    public abstract class Terrain
+    public class TerrainBase : Terrain
     {
-        /// <summary>
-        /// Indique si le terrain est accessible par un vaisseau
-        /// </summary>
-        public abstract TypeTerrain Type { get; }
-
-        /// <summary>
-        /// Indique si le vaisseau peut se déplacer sur ce terrain
-        /// </summary>
-        public abstract bool EstAccessible { get; }
+        public override TypeTerrain Type => TypeTerrain.BASE;
+        public override bool EstAccessible => true;
+        public override string ToString() => "B";
     }
 }

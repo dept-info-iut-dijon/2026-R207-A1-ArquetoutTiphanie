@@ -70,7 +70,7 @@ namespace GalacticGraph.Metier.Cartes
         /// <param name="coordonnees">Les coordonnées de la case</param>
         private void AjouterCase(char caractere, Coordonnees coordonnees)
         {
-            this.cases[coordonnees] = FabriqueCase.Creer(caractere);
+            this.cases[coordonnees] = FabriqueCase.Creer(coordonnees.Ligne, coordonnees.Colonne, caractere);
 
             // On mémorise les coordonnées de la base
             if (caractere == 'B')

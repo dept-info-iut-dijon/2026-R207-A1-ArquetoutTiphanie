@@ -15,6 +15,7 @@ namespace GalacticGraph.Metier.Cartes
         #region --- Attributs ---
         private Terrain terrain;
         private List<Case> voisins;
+        private Coordonnees coordonnees;
         #endregion
 
         #region --- Propriétés ---
@@ -27,6 +28,14 @@ namespace GalacticGraph.Metier.Cartes
         /// Indique si la case est accessible par un vaisseau
         /// </summary>
         public bool EstAccessible => this.terrain.EstAccessible;
+
+        /// <summary>
+        /// Retourne les coordonnées de la case
+        /// </summary>
+        public Coordonnees Coordonnees
+        {
+            get { return this.coordonnees; }
+        }
         #endregion
 
         #region --- Constructeur ---
@@ -34,8 +43,9 @@ namespace GalacticGraph.Metier.Cartes
         /// Constructeur par défaut
         /// </summary>
         /// <param name="terrain">Le terrain de la case</param>
-        public Case(Terrain terrain)
+        public Case(Terrain terrain, Coordonnees coordonnees)
         {
+            this.coordonnees = coordonnees;
             this.terrain = terrain;
             this.voisins = new List<Case>();
         }

@@ -17,11 +17,11 @@ namespace GalacticGraph.Metier.Cartes
         /// </summary>
         /// <param name="caractere">Le caractère représentant le type de case</param>
         /// <returns>Une case avec le bon terrain</returns>
-        public static Case Creer(char caractere)
+        public static Case Creer(int ligne, int colonne, char caractere)
         {
             Terrain terrain = FabriqueTerrain.Creer(caractere);
-            Case laCase = new Case(terrain);
-            return laCase;
+            Coordonnees coordonnees = new Coordonnees(ligne, colonne);
+            return new Case(terrain, coordonnees);
         }
     }
 }

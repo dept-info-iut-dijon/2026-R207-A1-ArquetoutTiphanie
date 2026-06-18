@@ -74,6 +74,14 @@ namespace GalacticGraph.Metier
             this.Deplacer(direction);
             return direction;
         }
+
+        /// <summary>
+        /// Vide la liste des ordres du vaisseau
+        /// </summary>
+        public void SupprimerOrdres()
+        {
+            this.ordres.Clear();
+        }
         #endregion
     }
 }

@@ -47,23 +47,34 @@ namespace GalacticGraph.Modules.Realisations
             }
             else
             {
-                if (!this.ModuleMemoire.Vaisseau.HasOrdres)
-                {
-                    ParcoursLargeur algo = new ParcoursLargeur(this.ModuleMemoire.Carte);
-                    Case caseVaisseau = this.ModuleMemoire.Carte.GetCaseAt(this.ModuleMemoire.Vaisseau.Coordonnees);
-                    algo.CalculerDistancesDepuis(caseVaisseau);
-                    List<Direction> chemin = algo.GetChemin(this.ModuleMemoire.Carte.GetCaseAt(new Coordonnees(0, 0)));
-                    this.ModuleMemoire.Vaisseau.AjouterOrdres(chemin);
-                }
+                Case caseVaisseau = this.ModuleMemoire.Carte.GetCaseAt(this.ModuleMemoire.Vaisseau.Coordonnees);
 
-                if (this.ModuleMemoire.Vaisseau.HasOrdres)
+                // Mise à jour de la carte nécessaire
+                if (caseVaisseau.HasVoisinInconnu())
                 {
-                    Direction direction = this.ModuleMemoire.Vaisseau.ExecuterOrdre();
-                    messageAEnvoyer = "BOUGER|0|" + direction.ToString();
+                    this.ModuleMemoire.Vaisseau.SupprimerOrdres();
+                    messageAEnvoyer = "CARTE";
                 }
+                // Déplacement du vaisseau
                 else
                 {
-                    this.ArreterLaCommunication(); // méthode protégée de Module
+                    if (!this.ModuleMemoire.Vaisseau.HasOrdres)
+                    {
+                        ParcoursLargeur algo = new ParcoursLargeur(this.ModuleMemoire.Carte);
+                        algo.CalculerDistancesDepuis(caseVaisseau);
+                        List<Direction> chemin = algo.GetChemin(this.ModuleMemoire.Carte.GetCaseAt(new Coordonnees(0, 0)));
+                        this.ModuleMemoire.Vaisseau.AjouterOrdres(chemin);
+                    }
+
+                    if (this.ModuleMemoire.Vaisseau.HasOrdres)
+                    {
+                        Direction direction = this.ModuleMemoire.Vaisseau.ExecuterOrdre();
+                        messageAEnvoyer = "BOUGER|0|" + direction.ToString();
+                    }
+                    else
+                    {
+                        this.ArreterLaCommunication();
+                    }
                 }
             }
 

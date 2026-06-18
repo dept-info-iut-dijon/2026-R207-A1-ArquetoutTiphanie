@@ -36,6 +36,21 @@ namespace GalacticGraph.Metier.Cartes
         {
             get { return this.coordonnees; }
         }
+        public bool EstInconnue => this.terrain.Type == TypeTerrain.INCONNU;
+
+        /// <summary>
+        /// Détermine si la case a un voisin dont le terrain est inconnu
+        /// </summary>
+        /// <returns>True si un voisin est inconnu, False sinon</returns>
+        public bool HasVoisinInconnu()
+        {
+            foreach (Case voisin in this.voisins)
+            {
+                if (voisin.EstInconnue)
+                    return true;
+            }
+            return false;
+        }
         #endregion
 
         #region --- Constructeur ---

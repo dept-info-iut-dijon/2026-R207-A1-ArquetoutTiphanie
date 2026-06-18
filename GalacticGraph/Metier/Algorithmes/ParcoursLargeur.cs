@@ -52,6 +52,38 @@ namespace GalacticGraph.Metier.Algorithmes
             }
             
         }
+
+        /// <summary>
+        /// Renvoie la séquence de directions pour aller jusqu'à la case arrivée
+        /// </summary>
+        /// <param name="arrivee">La case de destination</param>
+        /// <returns>La liste des directions à suivre</returns>
+        public override List<Direction> GetChemin(Case arrivee)
+        {
+            List<Direction> resultat = new List<Direction>();
+            Case caseEnCours = arrivee;
+
+            if (this.GetDistance(caseEnCours) != -1)
+            {
+                while (this.GetDistance(caseEnCours) > 0)
+                {
+                    Case casePrecedente = null;
+                    foreach (Case v in caseEnCours.Voisins)
+                    {
+                        if (this.GetDistance(v) == this.GetDistance(caseEnCours) - 1)
+                        {
+                            casePrecedente = v;
+                            break;
+                        }
+                    }
+                    resultat.Add(casePrecedente.GetDirectionPourAllerEn(caseEnCours));
+                    caseEnCours = casePrecedente;
+                }
+                resultat.Reverse();
+            }
+
+            return resultat;
+        }
         #endregion
     }
 }

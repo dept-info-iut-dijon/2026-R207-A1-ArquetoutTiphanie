@@ -93,6 +93,15 @@ namespace GalacticGraph.Metier.Algorithmes
         public abstract void CalculerDistancesDepuis(Case depart);
 
         public abstract List<Direction> GetChemin(Case arrivee);
+
+        /// <summary>
+        /// Renvoie l'ensemble des cases de la carte
+        /// Délègue à la méthode GetCases de la carte
+        /// </summary>
+        protected Case[] GetCases()
+        {
+            return this.carte.GetCases();
+        }
         #endregion
     }
 }

@@ -29,7 +29,7 @@ namespace GalacticGraph.Metier.Cartes
         /// <summary>
         /// Constructeur initialisant la carte
         /// </summary>
-        /// <param name="messageRecu">Message reçu du serveur (non utilisé pour l'instant)</param>
+        /// <param name="messageRecu">Message reçu du serveur</param>
         public Carte(string messageRecu)
         {
             this.hauteur = 40;
@@ -65,17 +65,17 @@ namespace GalacticGraph.Metier.Cartes
         /// Crée une case à partir d'un caractère et l'ajoute au dictionnaire.
         /// Mémorise les coordonnées si la case est une base.
         /// </summary>
-        /// <param name="caractere">Le caractère représentant le type de case</param>
-        /// <param name="coordonnees">Les coordonnées de la case</param>
         private void AjouterCase(char caractere, Coordonnees coordonnees)
         {
             this.cases[coordonnees] = FabriqueCase.Creer(coordonnees.Ligne, coordonnees.Colonne, caractere);
 
-            // On mémorise les coordonnées de la base
             if (caractere == 'B')
                 this.coordonneesBase = coordonnees;
         }
 
+        /// <summary>
+        /// Affiche la carte dans la console
+        /// </summary>
         private void AffichageConsole()
         {
             Console.WriteLine();
@@ -97,13 +97,19 @@ namespace GalacticGraph.Metier.Cartes
         /// <summary>
         /// Renvoie la case aux coordonnées données, ou null si elle n'existe pas
         /// </summary>
-        /// <param name="coordonnees">Les coordonnées de la case recherchée</param>
-        /// <returns>La case correspondante ou null</returns>
         public Case? GetCaseAt(Coordonnees coordonnees)
         {
             if (this.cases.ContainsKey(coordonnees))
                 return this.cases[coordonnees];
             return null;
+        }
+
+        /// <summary>
+        /// Renvoie l'ensemble des cases de la carte sous forme d'un tableau
+        /// </summary>
+        public Case[] GetCases()
+        {
+            return this.cases.Values.ToArray();
         }
         #endregion
     }

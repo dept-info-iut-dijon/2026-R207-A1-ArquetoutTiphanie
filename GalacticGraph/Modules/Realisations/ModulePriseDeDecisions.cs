@@ -57,7 +57,7 @@ namespace GalacticGraph.Modules.Realisations
                 {
                     if (!this.ModuleMemoire.Vaisseau.HasOrdres)
                     {
-                        ParcoursLargeur algo = new ParcoursLargeur(this.ModuleMemoire.Carte);
+                        Dijkstra algo = new Dijkstra(this.ModuleMemoire.Carte);
                         algo.CalculerDistancesDepuis(caseVaisseau);
 
                         if (algo.CaseInconnueLaPlusProche != null)

@@ -20,5 +20,11 @@ namespace GalacticGraph.Metier.Cartes.Terrains
         /// Indique si le vaisseau peut se déplacer sur ce terrain
         /// </summary>
         public abstract bool EstAccessible { get; }
+
+        /// <summary>
+        /// Coût de déplacement pour traverser ce terrain
+        /// Vaut 1 par défaut pour un terrain normal
+        /// </summary>
+        public virtual int CoutDeplacement => 1;
     }
 }

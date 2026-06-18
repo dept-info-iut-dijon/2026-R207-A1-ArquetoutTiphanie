@@ -48,22 +48,23 @@ namespace GalacticGraph.Modules.Realisations
             else
             {
                 Case caseVaisseau = this.ModuleMemoire.Carte.GetCaseAt(this.ModuleMemoire.Vaisseau.Coordonnees);
-
-                // Mise à jour de la carte nécessaire
                 if (caseVaisseau.HasVoisinInconnu())
                 {
                     this.ModuleMemoire.Vaisseau.SupprimerOrdres();
                     messageAEnvoyer = "CARTE";
                 }
-                // Déplacement du vaisseau
                 else
                 {
                     if (!this.ModuleMemoire.Vaisseau.HasOrdres)
                     {
                         ParcoursLargeur algo = new ParcoursLargeur(this.ModuleMemoire.Carte);
                         algo.CalculerDistancesDepuis(caseVaisseau);
-                        List<Direction> chemin = algo.GetChemin(this.ModuleMemoire.Carte.GetCaseAt(new Coordonnees(0, 0)));
-                        this.ModuleMemoire.Vaisseau.AjouterOrdres(chemin);
+
+                        if (algo.CaseInconnueLaPlusProche != null)
+                        {
+                            List<Direction> chemin = algo.GetChemin(algo.CaseInconnueLaPlusProche);
+                            this.ModuleMemoire.Vaisseau.AjouterOrdres(chemin);
+                        }
                     }
 
                     if (this.ModuleMemoire.Vaisseau.HasOrdres)

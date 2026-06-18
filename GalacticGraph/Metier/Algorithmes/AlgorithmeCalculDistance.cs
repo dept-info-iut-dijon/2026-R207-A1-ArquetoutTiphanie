@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalacticGraph.Metier.Cartes;
-using System.Collections.Generic;
 
 namespace GalacticGraph.Metier.Algorithmes
 {
@@ -16,6 +15,18 @@ namespace GalacticGraph.Metier.Algorithmes
         #region --- Attributs ---
         private Carte carte;
         private Dictionary<Case, int> distances;
+        private int distanceMinCaseInconnue;
+        private Case? caseInconnueLaPlusProche;
+        #endregion
+
+        #region --- Propriétés ---
+        /// <summary>
+        /// Retourne la case inconnue la plus proche du point de départ
+        /// </summary>
+        public Case? CaseInconnueLaPlusProche
+        {
+            get { return this.caseInconnueLaPlusProche; }
+        }
         #endregion
 
         #region --- Constructeur ---
@@ -27,25 +38,29 @@ namespace GalacticGraph.Metier.Algorithmes
         {
             this.carte = carte;
             this.distances = new Dictionary<Case, int>();
+            this.distanceMinCaseInconnue = 80 * 40 * 3 + 1;
+            this.caseInconnueLaPlusProche = null;
         }
         #endregion
 
         #region --- Méthodes ---
         /// <summary>
-        /// Fixe la distance d'une case à une valeur donnée
+        /// Fixe la distance d'une case en mettant à jour la case inconnue la plus proche
         /// </summary>
-        /// <param name="position">La case dont on fixe la distance</param>
-        /// <param name="valeur">La distance à fixer</param>
         protected void SetDistance(Case position, int valeur)
         {
             this.distances[position] = valeur;
+
+            if (position.EstInconnue && this.Heuristique(position, valeur) < this.distanceMinCaseInconnue)
+            {
+                this.distanceMinCaseInconnue = this.Heuristique(position, valeur);
+                this.caseInconnueLaPlusProche = position;
+            }
         }
 
         /// <summary>
         /// Renvoie la distance d'une case, ou -1 si elle n'est pas dans le dictionnaire
         /// </summary>
-        /// <param name="position">La case dont on veut la distance</param>
-        /// <returns>La distance ou -1</returns>
         public int GetDistance(Case position)
         {
             if (this.distances.ContainsKey(position))
@@ -59,17 +74,25 @@ namespace GalacticGraph.Metier.Algorithmes
         protected void ReinitialisationDistances()
         {
             this.distances.Clear();
+            this.distanceMinCaseInconnue = 80 * 40 * 3 + 1;
+            this.caseInconnueLaPlusProche = null;
+        }
+
+        /// <summary>
+        /// Renvoie la somme de valeur et de la distance de Chebyshev entre position et la base
+        /// </summary>
+        private int Heuristique(Case position, int valeur)
+        {
+            Case caseBase = this.carte.GetCaseAt(this.carte.CoordonneesBase);
+            return valeur + position.DistanceChebyshevVers(caseBase);
         }
 
         /// <summary>
         /// Calcule les distances depuis la case de départ donnée
         /// </summary>
-        /// <param name="depart">La case de départ</param>
         public abstract void CalculerDistancesDepuis(Case depart);
 
         public abstract List<Direction> GetChemin(Case arrivee);
-
         #endregion
     }
 }
-

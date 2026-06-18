@@ -88,6 +88,18 @@ namespace GalacticGraph.Metier.Cartes
         {
             return this.coordonnees.GetDirectionPourAllerEn(caseArrivee.Coordonnees);
         }
+
+        /// <summary>
+        /// Calcule la distance de Chebyshev entre cette case et la case arrivée
+        /// </summary>
+        /// <param name="caseArrivee">La case de destination</param>
+        /// <returns>La distance de Chebyshev</returns>
+        public int DistanceChebyshevVers(Case caseArrivee)
+        {
+            int diffLigne = Math.Abs(this.coordonnees.Ligne - caseArrivee.Coordonnees.Ligne);
+            int diffColonne = Math.Abs(this.coordonnees.Colonne - caseArrivee.Coordonnees.Colonne);
+            return Math.Max(diffLigne, diffColonne);
+        }
         #endregion
     }
 }

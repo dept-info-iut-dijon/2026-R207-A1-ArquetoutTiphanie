@@ -84,7 +84,7 @@ namespace GalacticGraph.Metier.Algorithmes
         private int Heuristique(Case position, int valeur)
         {
             Case caseBase = this.carte.GetCaseAt(this.carte.CoordonneesBase);
-            return valeur + position.DistanceChebyshevVers(caseBase);
+            return valeur - position.DistanceChebyshevVers(caseBase);
         }
 
         /// <summary>

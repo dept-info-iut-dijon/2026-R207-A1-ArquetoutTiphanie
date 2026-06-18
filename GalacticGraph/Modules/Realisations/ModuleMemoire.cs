@@ -24,11 +24,19 @@ namespace GalacticGraph.Modules.Realisations
         /// </summary>
         public bool HasCarte => this.carte != null;
 
-        public Carte Carte => this.carte;
+        /// <summary>
+        /// Retourne la carte du jeu
+        /// </summary>
+        public Carte Carte
+        {
+            get { return this.carte; }
+        }
 
         public Vaisseau Vaisseau => this.vaisseau;
 
         public bool HasVaisseau => this.vaisseau != null;
+
+
         #endregion
 
         #region --- Constructeur ---

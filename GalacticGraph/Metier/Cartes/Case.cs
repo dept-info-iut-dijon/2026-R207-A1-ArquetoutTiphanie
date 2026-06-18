@@ -51,6 +51,12 @@ namespace GalacticGraph.Metier.Cartes
             }
             return false;
         }
+
+        /// <summary>
+        /// Coût de déplacement pour traverser cette case
+        /// Délègue au terrain de la case
+        /// </summary>
+        public int CoutDeplacement => this.terrain.CoutDeplacement;
         #endregion
 
         #region --- Constructeur ---
@@ -100,6 +106,7 @@ namespace GalacticGraph.Metier.Cartes
             int diffColonne = Math.Abs(this.coordonnees.Colonne - caseArrivee.Coordonnees.Colonne);
             return Math.Max(diffLigne, diffColonne);
         }
+
         #endregion
     }
 }
